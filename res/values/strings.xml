@@ -1,8 +1,11 @@
 <resources>
 
     <string name="app_name">Skyrim ID database</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_category">Skyrim ID database</string>
+    <string name="choose_category">Choose ID category</string>
+    <string name="perks">Perks</string>
+    <string name="title_activity_data_display">DataDisplayActivity</string>
+    <string name="search_hint">Item to search</string>
 
 </resources>
