@@ -7,5 +7,6 @@
     <string name="perks">Perks</string>
     <string name="title_activity_data_display">DataDisplayActivity</string>
     <string name="search_hint">Item to search</string>
+    <string name="search_icon_descr">Filter data</string>
 
 </resources>
