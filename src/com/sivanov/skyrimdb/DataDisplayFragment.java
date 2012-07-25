@@ -1,27 +1,18 @@
 package com.sivanov.skyrimdb;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.sivanov.skyrimdb.db.PerksProvider;
+import android.util.Log;
 
 public class DataDisplayFragment extends ListFragment {
     private final static int cursor_loader_id = 0;
     private SimpleCursorAdapter adapter;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.data_dispay_fragment, container, false);
-        return view;
-    }
 
     @Override
     public void onActivityCreated(Bundle savedState) {
@@ -30,7 +21,7 @@ public class DataDisplayFragment extends ListFragment {
         setEmptyText("No data");
 
         adapter = new SimpleCursorAdapter(getActivity(),
-                                          android.R.layout.simple_list_item_2,
+                                          android.R.layout.two_line_list_item,
                                           null,
                                           new String[] { "form_id", "editor_id" },
                                           new int[] { android.R.id.text1, android.R.id.text2 },
@@ -38,12 +29,15 @@ public class DataDisplayFragment extends ListFragment {
         setListAdapter(adapter);
 
         setListShown(false);
+    }
 
+    public void setProvider(final Uri provider) {
+        Log.w("SkyrimDB", "setProvider(): " + provider.toString());
         getLoaderManager().initLoader(cursor_loader_id, null, new LoaderCallbacks<Cursor>() {
             @Override
             public Loader<Cursor> onCreateLoader(int id, Bundle arg) {
                 return new CursorLoader(getActivity(),
-                                        PerksProvider.CONTENT_URI,
+                                        provider,
                                         new String[] { "rowid as _id", "form_id", "editor_id" },
                                         null,
                                         null,
