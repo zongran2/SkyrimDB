@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.sivanov.skyrimdb.db.PerksProvider;
+
 public class CategoryActivity extends Activity {
 
     @Override
@@ -19,6 +21,7 @@ public class CategoryActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), DataDisplayActivity.class);
+                intent.putExtra("provider", PerksProvider.CONTENT_URI);
                 startActivity(intent);
             }
         });

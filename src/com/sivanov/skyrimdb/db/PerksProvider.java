@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class PerksProvider extends ContentProvider {
     private static final String AUTHORITY = "com.sivanov.skyrimdb.db.PerksProvider";
@@ -21,7 +22,7 @@ public class PerksProvider extends ContentProvider {
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH, ALL_PERKS);
-        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/#", PERK_FILTER);
+        sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/*", PERK_FILTER);
     }
 
     private DBHelper dbHelper;
@@ -70,13 +71,17 @@ public class PerksProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        Log.w("SkyrimDB", "Searching for: " + uri.toString());
+
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables("perks");
 
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
             case PERK_FILTER:
-                queryBuilder.appendWhere("editor_id contains" + uri.getLastPathSegment());
+                Log.w("SkyrimDB", "Updated filter: " + uri.getLastPathSegment());
+
+                queryBuilder.appendWhere("editor_id contains '" + uri.getLastPathSegment() + "'");
                 break;
             case ALL_PERKS:
                 // no filter
