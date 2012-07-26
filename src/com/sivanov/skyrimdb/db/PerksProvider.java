@@ -71,8 +71,6 @@ public class PerksProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Log.w("SkyrimDB", "Searching for: " + uri.toString());
-
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables("perks");
 

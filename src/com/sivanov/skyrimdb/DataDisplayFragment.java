@@ -8,7 +8,6 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 
 public class DataDisplayFragment extends ListFragment {
     private final static int cursor_loader_id = 0;
@@ -31,34 +30,37 @@ public class DataDisplayFragment extends ListFragment {
         setListShown(false);
     }
 
-    public void setProvider(final Uri provider) {
-        Log.w("SkyrimDB", "setProvider(): " + provider.toString());
-        getLoaderManager().initLoader(cursor_loader_id, null, new LoaderCallbacks<Cursor>() {
-            @Override
-            public Loader<Cursor> onCreateLoader(int id, Bundle arg) {
-                return new CursorLoader(getActivity(),
-                                        provider,
-                                        new String[] { "rowid as _id", "form_id", "editor_id" },
-                                        null,
-                                        null,
-                                        "editor_id");
-            }
+    private class CursorCallbacks implements LoaderCallbacks<Cursor> {
+        private Uri provider;
 
-            @Override
-            public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-                adapter.changeCursor(cursor);
+        public CursorCallbacks(Uri provider) {
+            this.provider = provider;
+        }
 
-                if (isResumed()) {
-                    setListShown(true);
-                } else {
-                    setListShownNoAnimation(true);
-                }
-            }
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle arg) {
+            return new CursorLoader(getActivity(), provider, new String[] { "rowid as _id", "form_id", "editor_id" },
+                    null, null, "editor_id");
+        }
 
-            @Override
-            public void onLoaderReset(Loader<Cursor> loader) {
-                adapter.changeCursor(null);
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+            adapter.changeCursor(cursor);
+
+            if (isResumed()) {
+                setListShown(true);
+            } else {
+                setListShownNoAnimation(true);
             }
-        });
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+            adapter.changeCursor(null);
+        }
+    }
+
+    public void setProvider(Uri provider) {
+        getLoaderManager().restartLoader(cursor_loader_id, null, new CursorCallbacks(provider));
     }
 }
