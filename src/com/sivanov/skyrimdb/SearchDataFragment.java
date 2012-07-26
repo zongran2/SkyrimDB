@@ -36,8 +36,12 @@ public class SearchDataFragment extends Fragment {
                     DataDisplayFragment f = (DataDisplayFragment) getFragmentManager().findFragmentById(R.id.data_fragment);
                     Uri provider = getActivity().getIntent().getParcelableExtra("provider");
                     if (null != f && null != provider) {
-                        Uri filter = provider.buildUpon().appendPath(s.toString()).build();
-                        f.setProvider(filter);
+                        if (s.length() == 0) {
+                            f.setProvider(provider);
+                        } else {
+                            Uri filter = provider.buildUpon().appendPath(s.toString()).build();
+                            f.setProvider(filter);
+                        }
                     }
                 }
             });
