@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +33,10 @@ public class SearchDataFragment extends Fragment {
 
                 @Override
                 public void afterTextChanged(Editable s) {
-                    Log.w("SkyrimDB", "New filter: " + s.toString());
                     DataDisplayFragment f = (DataDisplayFragment) getFragmentManager().findFragmentById(R.id.data_fragment);
                     Uri provider = getActivity().getIntent().getParcelableExtra("provider");
                     if (null != f && null != provider) {
                         Uri filter = provider.buildUpon().appendPath(s.toString()).build();
-                        Log.w("SkyrimDB", "Built new provider: " + filter.toString());
                         f.setProvider(filter);
                     }
                 }
