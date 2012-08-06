@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class PerksProvider extends ContentProvider {
     private static final String AUTHORITY = "com.sivanov.skyrimdb.db.PerksProvider";
@@ -77,9 +76,7 @@ public class PerksProvider extends ContentProvider {
         int uriType = sURIMatcher.match(uri);
         switch (uriType) {
             case PERK_FILTER:
-                Log.w("SkyrimDB", "Updated filter: " + uri.getLastPathSegment());
-
-                queryBuilder.appendWhere("editor_id contains '" + uri.getLastPathSegment() + "'");
+                queryBuilder.appendWhere("editor_id like '%" + uri.getLastPathSegment() + "%'");
                 break;
             case ALL_PERKS:
                 // no filter
