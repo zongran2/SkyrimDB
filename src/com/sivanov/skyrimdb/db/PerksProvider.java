@@ -15,8 +15,8 @@ public class PerksProvider extends ContentProvider {
 
     public final static Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 
-    public static final int ALL_PERKS = 100;
-    public static final int PERK_FILTER = 110;
+    private static final int ALL_PERKS = 100;
+    private static final int PERK_FILTER = 110;
 
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {

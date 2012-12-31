@@ -39,14 +39,14 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             checkDB = SQLiteDatabase.openDatabase(dbPath.getPath(), null, SQLiteDatabase.OPEN_READONLY);
         } catch (SQLiteException e) {
-            // database does't exist yet.
+            // database doesn't exist yet.
         }
 
         if (checkDB != null) {
             checkDB.close();
         }
 
-        return checkDB != null ? true : false;
+        return checkDB != null;
     }
 
     /**
@@ -92,7 +92,7 @@ public class DBHelper extends SQLiteOpenHelper {
             throw new Error("Can't open destination DB file");
         }
 
-        // transfer bytes from the inputfile to the outputfile
+        // transfer bytes from the input file to the output file
         try {
             byte[] buffer = new byte[1024];
             int length;
@@ -102,14 +102,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
             // Close the streams
             myOutput.flush();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         } finally {
             try {
                 myOutput.close();
-            } catch (IOException e) {}
+            } catch (IOException ignored) {}
             try {
                 myInput.close();
-            } catch (IOException e) {}
+            } catch (IOException ignored) {}
         }
     }
 
