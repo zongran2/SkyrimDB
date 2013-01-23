@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 <resources>
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
+=======
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+>>>>>>> 59e5dadeae7ad9c475e12a5409bad8bf42f4030d
 </resources>

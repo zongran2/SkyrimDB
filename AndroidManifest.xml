@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sivanov.skyrimdb"
     android:versionCode="1"
@@ -30,4 +31,38 @@
         <provider android:authorities="com.sivanov.skyrimdb.db.DataProvider" android:multiprocess="true" android:name=".db.DataProvider" android:exported="false"/>
     </application>
 
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sivanov.skyrimdb"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".CategoryActivity"
+            android:label="@string/title_activity_category" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DataDisplayActivity"
+            android:label="@string/title_activity_data_display" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sivanov.skyrimdb.CategoryActivity" />
+        </activity>
+        <provider android:authorities="com.sivanov.skyrimdb.db.PerksProvider" android:multiprocess="true" android:name=".db.PerksProvider" android:exported="false"/>
+    </application>
+
+>>>>>>> 59e5dadeae7ad9c475e12a5409bad8bf42f4030d
 </manifest>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,3 +27,33 @@
         android:text="@string/perks" />
 
 </LinearLayout>
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dip"
+        android:gravity="center_horizontal"
+        android:text="@string/choose_category"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/items"
+            android:id="@+id/show_items_btn" android:singleLine="false"/>
+    <Button
+        android:id="@+id/show_perks_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/perks" />
+
+</LinearLayout>
+>>>>>>> 59e5dadeae7ad9c475e12a5409bad8bf42f4030d

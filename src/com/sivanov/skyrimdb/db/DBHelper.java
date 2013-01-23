@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private final File dbPath;
     private final Context context;
 
+<<<<<<< HEAD
     private static DBHelper instance = null;
 
     synchronized public static DBHelper getInstance(Context context){
@@ -29,6 +30,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private DBHelper(Context context) {
+=======
+    public DBHelper(Context context) {
+>>>>>>> 59e5dadeae7ad9c475e12a5409bad8bf42f4030d
         super(context, DB_NAME, null, DB_VERSION);
 
         this.context = context;
