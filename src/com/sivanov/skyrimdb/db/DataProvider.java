@@ -9,14 +9,14 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 
-public class PerksProvider extends ContentProvider {
-    private static final String AUTHORITY = "com.sivanov.skyrimdb.db.PerksProvider";
+public class DataProvider extends ContentProvider {
+    private static final String AUTHORITY = "com.sivanov.skyrimdb.db.DataProvider";
     private static final String BASE_PATH = "perks";
 
     public final static Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 
-    public static final int ALL_PERKS = 100;
-    public static final int PERK_FILTER = 110;
+    private static final int ALL_PERKS = 100;
+    private static final int PERK_FILTER = 110;
 
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
@@ -24,12 +24,10 @@ public class PerksProvider extends ContentProvider {
         sURIMatcher.addURI(AUTHORITY, BASE_PATH + "/*", PERK_FILTER);
     }
 
-    private DBHelper dbHelper;
-
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int uriType = sURIMatcher.match(uri);
-        SQLiteDatabase sqlDB = dbHelper.getWritableDatabase();
+        SQLiteDatabase sqlDB =  DBHelper.getInstance(getContext()).getWritableDatabase();
         int rowsAffected = 0;
         switch (uriType) {
             case ALL_PERKS:
@@ -64,8 +62,7 @@ public class PerksProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        dbHelper = new DBHelper(getContext());
-        return false;
+        return true;
     }
 
     @Override
@@ -85,7 +82,7 @@ public class PerksProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unknown URI");
         }
 
-        Cursor cursor = queryBuilder.query(dbHelper.getReadableDatabase(),
+        Cursor cursor = queryBuilder.query(DBHelper.getInstance(getContext()).getReadableDatabase(),
                                            projection,
                                            selection,
                                            selectionArgs,

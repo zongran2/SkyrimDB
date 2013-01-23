@@ -15,6 +15,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/items"
+            android:id="@+id/show_items_btn" android:singleLine="false"/>
+    <Button
         android:id="@+id/show_perks_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -5,6 +5,7 @@
     <string name="title_activity_category">Skyrim ID database</string>
     <string name="choose_category">Choose ID category</string>
     <string name="perks">Perks</string>
+    <string name="items">Items</string>
     <string name="title_activity_data_display">DataDisplayActivity</string>
     <string name="search_hint">Item to search</string>
     <string name="search_icon_descr">Filter data</string>

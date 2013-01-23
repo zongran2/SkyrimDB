@@ -31,7 +31,7 @@ public class DataDisplayFragment extends ListFragment {
     }
 
     private class CursorCallbacks implements LoaderCallbacks<Cursor> {
-        private Uri provider;
+        private final Uri provider;
 
         public CursorCallbacks(Uri provider) {
             this.provider = provider;
